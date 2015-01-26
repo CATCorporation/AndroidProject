@@ -1,0 +1,23 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.emerich.mamoyenne.Traitment.About">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="\n\nMa Moyenne\n\n\n\n\n\n\n \n\nApplication développée par le groupe 7 de la Classe 4A AL1 dans le cadre du projet ANDROID du semestre 1. \n\n\n\n\n\n\n\n\n\nCopyright Groupe 7 4A AL1"
+            android:id="@+id/textView"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:textSize="16sp"
+            android:textAlignment="center"
+            android:scrollbars = "vertical"
+            android:textStyle="normal|italic"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:autoText="false" />
+
+</RelativeLayout>
