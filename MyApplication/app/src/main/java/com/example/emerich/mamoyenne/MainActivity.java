@@ -23,18 +23,6 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        maBdd = new MyBddClass(this);
-        maBdd.openDatabase();
-
-        maBdd.insert_matiere("maths","4");
-        maBdd.insert_matiere("francais","2");
-        maBdd.insert_note("10.5", "1", "1");
-        maBdd.insert_note("2", "1", "2");
-        maBdd.insert_note("15.5", "1", "2");
-        maBdd.insert_note("8.5", "1", "1");
-        maBdd.insert_note("12", "1", "1");
-        maBdd.insert_note("17", "1", "1");
-
         // mise en place listener sur les boutons
         Button one = (Button) findViewById(R.id.add);
         one.setOnClickListener(this); // calling onClick() method
@@ -70,7 +58,6 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        maBdd.closeDatabase();
     }
 
     @Override
@@ -79,7 +66,7 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
 
             // bouton ajouter/supprimer cliqué
             case R.id.add:
-                //changement de layout
+                /*changement de layout
                 setContentView(R.layout.add_layout);
 
                 // mise en place listener sur les boutons
@@ -88,7 +75,11 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
                 Button five = (Button) findViewById(R.id.addN);
                 five.setOnClickListener(this);
                 Button six = (Button) findViewById(R.id.main);
-                six.setOnClickListener(this);
+                six.setOnClickListener(this);*
+                */
+                Intent addMatiereIntent =
+                        new Intent(this, AddMenu.class);
+                startActivity(addMatiereIntent);
                 break;
 
             // bouton menu principal cliqué
@@ -121,13 +112,13 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
 
             // bouton matiere cliqué
             case R.id.addM:
-                Intent addMatiereIntent =
+                Intent addMoatiereIntent =
                         new Intent(this, AddMenu.class);
                 // passage de paramètres pour identifier charger le bon layout
                 Bundle b = new Bundle();
                 b.putInt("key", 0);
-                addMatiereIntent.putExtras(b);
-                startActivity(addMatiereIntent);
+                addMoatiereIntent.putExtras(b);
+                startActivity(addMoatiereIntent);
                 break;
 
             // bouton note cliqué

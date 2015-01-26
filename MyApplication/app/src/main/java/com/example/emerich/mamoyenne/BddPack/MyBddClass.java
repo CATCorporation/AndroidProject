@@ -1,10 +1,14 @@
 package com.example.emerich.mamoyenne.BddPack;
 
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.database.sqlite.SQLiteStatement;
+import android.util.Log;
+
+import java.util.ArrayList;
 
 /**
  * Created by Emerich on 26/01/2015.
@@ -47,7 +51,7 @@ public class MyBddClass extends SQLiteOpenHelper{
     @Override
     public void onCreate(SQLiteDatabase db) {
 
-            db.execSQL("CREATE TABLE " + TABLE_NAME_MATS + " (_id INTEGER PRIMARY KEY, name TEXT, coef INTEGER )");
+            db.execSQL("CREATE TABLE " + TABLE_NAME_MATS + " (_id INTEGER PRIMARY KEY, name TEXT, coef INTEGER, UNIQUE(name) )");
             db.execSQL("CREATE TABLE " + TABLE_NAME_NOTE + " (_id INTEGER PRIMARY KEY, note REAL, semestre INTEGER, " +
                     "id_mat INTEGER NOT NULL CONSTRAINT fk_id_mat REFERENCES "+ TABLE_NAME_MATS + " (_id) );");
             db.execSQL("CREATE VIEW Moyenne as select ma.name,  ma.coef, " +
@@ -81,4 +85,67 @@ public class MyBddClass extends SQLiteOpenHelper{
         }
         return checkDB != null ? true : false;
     }
-}
+
+    public ArrayList<String> selectMatiere (){
+        ArrayList<String> liste = new ArrayList<>();
+        try {
+            Cursor c = db.rawQuery("SELECT name FROM " + TABLE_NAME_MATS, null);
+            if (c.moveToFirst()) {
+                do {
+                    liste.add(c.getString(0));
+                } while (c.moveToNext());
+            }
+            c.close();
+        } catch (SQLiteException e) {
+        }
+        return liste;
+    }
+    public ArrayList<String> selectNote (){
+        ArrayList<String> liste = new ArrayList<>();
+        try {
+            Cursor c = db.rawQuery("SELECT note FROM " + TABLE_NAME_NOTE, null);
+            if (c.moveToFirst()) {
+                do {
+                    liste.add(c.getString(0));
+                } while (c.moveToNext());
+            }
+            c.close();
+        } catch (SQLiteException e) {
+        }
+        return liste;
+    }
+
+    public String getMatiereId(String matiere){
+
+        String _id ="";
+        try {
+            Cursor c = db.rawQuery("SELECT rowid FROM "+TABLE_NAME_MATS+ " where name ='"+matiere+"'", null);
+            if(c.moveToFirst()){
+                    _id = String.valueOf(c.getLong (0));
+            }
+        c.close();
+        } catch (SQLiteException e) {
+        }
+        return _id;
+    }
+    public boolean  deleteMatiere(String matiere){
+
+        String _id = getMatiereId(matiere);
+        try {
+            db.delete(TABLE_NAME_NOTE," id_mat ="+_id,null);
+            return db.delete(TABLE_NAME_MATS," name ='"+matiere+"'",null)>0 ;
+        } catch (SQLiteException e) {
+            Log.v("TAG", e.getMessage());
+        }
+        return false;
+    }
+
+    public boolean  deleteNote(String note,String matiere){
+        String _id = getMatiereId(matiere);
+        try {
+            return db.delete(TABLE_NAME_NOTE," id_mat ='"+_id+"' and note='"+note+"'",null)>0;
+        } catch (SQLiteException e) {
+        }
+    return false;
+    }
+ }
