@@ -6,5 +6,7 @@
     <string name="title_activity_add_menu">Ajouter - Supprimer</string>
     <string name="title_activity_about">A propos</string>
     <string name="title_activity_show">Consulter</string>
+    <string name="title_activity_delete_note">Supprimer Note</string>
+    <string name="hello_world">Hello world!</string>
 
 </resources>

@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.Window;
 import android.widget.LinearLayout;
 import android.widget.RadioGroup;
 import android.widget.TableLayout;
@@ -23,6 +24,7 @@ public class Show extends ActionBarActivity {
     TableLayout tl;
     MyBddClass maBdd;
     ArrayList<String> maListe = new ArrayList<String>();
+    double moyenneGenerale =0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -125,7 +127,9 @@ public class Show extends ActionBarActivity {
 
         if(maListe.size()>0)
         {
-            for(int i = 0; i < maListe.size(); i++)
+            int i;
+
+            for(i = 0; i < maListe.size(); i++)
             {
                 TableRow tr = new TableRow(this);
                 if(i%2!=0) tr.setBackgroundColor(Color.GRAY);
@@ -158,12 +162,61 @@ public class Show extends ActionBarActivity {
                 moyenne.setTextColor(Color.WHITE);
                 tr.addView(moyenne);
 
+                try
+                {
+
+                }catch (NumberFormatException e) {}
 
                 tl.addView(tr, new TableLayout.LayoutParams(
                         TableRow.LayoutParams.MATCH_PARENT,
                         TableRow.LayoutParams.WRAP_CONTENT));
 
             }
+
+            TableRow tr = new TableRow(this);
+            if(i%2!=0) tr.setBackgroundColor(Color.GRAY);
+            tr.setId(100+i);
+            tr.setLayoutParams(new  TableRow.LayoutParams(
+                    TableRow.LayoutParams.MATCH_PARENT,
+                    TableRow.LayoutParams.WRAP_CONTENT));
+            TextView name = new TextView(this);
+            name.setId(200+i);
+            name.setTextSize(14);
+            name.setText(" ");
+            name.setPadding(2, 0, 5, 0);
+            name.setTextColor(Color.WHITE);
+            tr.addView(name);
+            tl.addView(tr, new TableLayout.LayoutParams(
+                    TableRow.LayoutParams.MATCH_PARENT,
+                    TableRow.LayoutParams.WRAP_CONTENT));
+            i++;
+
+            tr = new TableRow(this);
+            if(i%2!=0) tr.setBackgroundColor(Color.GRAY);
+            tr.setId(100+i);
+            tr.setLayoutParams(new  TableRow.LayoutParams(
+                    TableRow.LayoutParams.MATCH_PARENT,
+                    TableRow.LayoutParams.WRAP_CONTENT));
+
+            name = new TextView(this);
+            name.setId(200+i);
+            name.setTextSize(14);
+            name.setText("Générale");
+            name.setPadding(2, 0, 5, 0);
+            name.setTextColor(Color.WHITE);
+            tr.addView(name);
+
+            TextView coef = new TextView(this);
+            coef.setId(200+i);
+            coef.setTextSize(14);
+            coef.setText(maBdd.getMoyGenerale(Semestre));
+            coef.setPadding(2, 0, 5, 0);
+            coef.setTextColor(Color.WHITE);
+            tr.addView(coef);
+
+            tl.addView(tr, new TableLayout.LayoutParams(
+                    TableRow.LayoutParams.MATCH_PARENT,
+                    TableRow.LayoutParams.WRAP_CONTENT));
         }
     }
 }

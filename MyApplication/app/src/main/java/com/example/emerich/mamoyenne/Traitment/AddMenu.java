@@ -1,10 +1,15 @@
 package com.example.emerich.mamoyenne.Traitment;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
+import android.widget.AdapterView;
+import android.widget.AdapterView.*;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -29,9 +34,6 @@ public class AddMenu extends ActionBarActivity implements View.OnClickListener{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_menu);
-        /* on recupère la valeur du layout a charger
-        Bundle b = getIntent().getExtras();
-        layout_val = b.getInt("key");*/
 
         // on set la bdd
         maBdd = new MyBddClass(this);
@@ -50,7 +52,19 @@ public class AddMenu extends ActionBarActivity implements View.OnClickListener{
         four.setOnClickListener(this);
 
         loadSpinner2();
-        loadSpinner3();
+
+        mySpinner1.setOnItemSelectedListener(new OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                loadSpinner3();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parentView) {
+
+            }
+
+        });
 
         RadioGroup rg = (RadioGroup) findViewById(R.id.radiogroup);
         rg.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener()
@@ -69,6 +83,11 @@ public class AddMenu extends ActionBarActivity implements View.OnClickListener{
         });
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -126,11 +145,7 @@ public class AddMenu extends ActionBarActivity implements View.OnClickListener{
                 break;
 
             case R.id.delNote:
-                maBdd.deleteNote(mySpinner2.getSelectedItem().toString(),mySpinner1.getSelectedItem().toString());
-                mySpinner1.setAdapter(null);
-                mySpinner2.setAdapter(null);
-                loadSpinner2();
-                loadSpinner3();
+                deleteNote();
                 break;
         }
     }
@@ -170,12 +185,12 @@ public class AddMenu extends ActionBarActivity implements View.OnClickListener{
 
     }
     private void loadSpinner3(){
-        maListe = maBdd.selectNote();
+        maListe = maBdd.selectNote(mySpinner1.getSelectedItem().toString());
 
         mySpinner2 = (Spinner) findViewById(R.id.noteSpin);
 
         if(maListe.size() == 0)
-            maListe.add("Liste vide");
+            maListe.add("Pas de note");
 
             ArrayAdapter<String> adapter;
 
@@ -184,5 +199,41 @@ public class AddMenu extends ActionBarActivity implements View.OnClickListener{
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
             mySpinner2.setAdapter(adapter);
 
+    }
+
+    private void deleteNote() {
+
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
+                this);
+
+        // set title
+        alertDialogBuilder.setTitle("Your Title");
+
+        // set dialog message
+        AlertDialog.Builder builder = alertDialogBuilder
+                .setMessage("Etes-vous sure de supprimer la note " + mySpinner2.getSelectedItem().toString() +
+                        " pour la matière " + mySpinner1.getSelectedItem().toString() + "!")
+                .setCancelable(false)
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        maBdd.deleteNote(mySpinner2.getSelectedItem().toString(), mySpinner1.getSelectedItem().toString());
+                        mySpinner1.setAdapter(null);
+                        mySpinner2.setAdapter(null);
+                        loadSpinner2();
+                        loadSpinner3();
+
+                    }
+                })
+                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                    }
+                });
+
+        // create alert dialog
+        AlertDialog alertDialog = alertDialogBuilder.create();
+
+        // show it
+        alertDialog.show();
     }
 }

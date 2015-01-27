@@ -102,10 +102,11 @@ public class MyBddClass extends SQLiteOpenHelper{
         return liste;
     }
 
-    public ArrayList<String> selectNote (){
+    public ArrayList<String> selectNote (String matiere){
+        String _id = getMatiereId(matiere);
         ArrayList<String> liste = new ArrayList<>();
         try {
-            Cursor c = db.rawQuery("SELECT note FROM " + TABLE_NAME_NOTE, null);
+            Cursor c = db.rawQuery("SELECT note FROM " + TABLE_NAME_NOTE +" where id_mat="+_id, null);
             if (c.moveToFirst()) {
                 do {
                     liste.add(c.getString(0));
@@ -130,6 +131,19 @@ public class MyBddClass extends SQLiteOpenHelper{
         } catch (SQLiteException e) {
         }
         return liste;
+    }
+    public String getMoyGenerale(String semestre){
+
+        String moyG ="";
+        try {
+            Cursor c = db.rawQuery("SELECT sum(moyenne"+semestre+"*coef)/sum(coef) FROM Moyenne", null);
+            if(c.moveToFirst()){
+                moyG = String.valueOf(c.getDouble(0));
+            }
+            c.close();
+        } catch (SQLiteException e) {
+        }
+        return moyG;
     }
 
     public String getMatiereId(String matiere){
