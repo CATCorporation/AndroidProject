@@ -66,10 +66,12 @@ public class MyBddClass extends SQLiteOpenHelper{
     }
 
     public void openDatabase() {
-        db = this.getWritableDatabase();
-        this.db = this.getWritableDatabase();
-        this.insertMatiere = this.db.compileStatement(INSERTM);
-        this.insertNote = this.db.compileStatement(INSERTN);
+        try {
+            db = this.getWritableDatabase();
+            this.db = this.getWritableDatabase();
+            this.insertMatiere = this.db.compileStatement(INSERTM);
+            this.insertNote = this.db.compileStatement(INSERTN);
+        }catch(SQLiteException e){}
     }
 
     public void closeDatabase() {
