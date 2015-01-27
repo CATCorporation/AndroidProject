@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioGroup;
 import android.widget.Spinner;
 
 import com.example.emerich.mamoyenne.BddPack.MyBddClass;
@@ -17,8 +18,12 @@ import java.util.ArrayList;
 
 public class AddMenu extends ActionBarActivity implements View.OnClickListener{
 
-    int layout_val ;
     MyBddClass maBdd;
+    Spinner mySpinner1 ;
+    Spinner mySpinner2 ;
+    Spinner mySpinner ;
+    ArrayList<String> maListe = new ArrayList<String>();
+    String Semestre = "1";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,14 +37,12 @@ public class AddMenu extends ActionBarActivity implements View.OnClickListener{
         maBdd = new MyBddClass(this);
         maBdd.openDatabase();
 
-
         Button one = (Button) findViewById(R.id.insertBtn);
         one.setOnClickListener(this); // calling onClick() method
         Button two = (Button) findViewById(R.id.delete);
         two.setOnClickListener(this);
 
         loadSpinner();
-
 
         Button three = (Button) findViewById(R.id.addNote);
         three.setOnClickListener(this); // calling onClick() method
@@ -49,6 +52,21 @@ public class AddMenu extends ActionBarActivity implements View.OnClickListener{
         loadSpinner2();
         loadSpinner3();
 
+        RadioGroup rg = (RadioGroup) findViewById(R.id.radiogroup);
+        rg.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener()
+        {
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                switch(checkedId){
+                    case R.id.sm1:
+                        Semestre = "1";
+                        break;
+
+                    case R.id.sm2:
+                        Semestre = "2";
+                        break;
+                }
+            }
+        });
     }
 
 
@@ -83,7 +101,6 @@ public class AddMenu extends ActionBarActivity implements View.OnClickListener{
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            //maBdd.insert_note("10.5", "1", "1");
 
             case R.id.insertBtn:
                 EditText mat = (EditText) findViewById(R.id.matiereText);
@@ -91,26 +108,25 @@ public class AddMenu extends ActionBarActivity implements View.OnClickListener{
                 maBdd.insert_matiere(mat.getText().toString(),coef.getText().toString());
                 mat.setText("");
                 coef.setText("");
+                loadSpinner();
+                loadSpinner2();
                 break;
 
             case R.id.delete:
-                Spinner mySpinner = (Spinner) findViewById(R.id.spinner);
                 maBdd.deleteMatiere(mySpinner.getSelectedItem().toString());
                 mySpinner.setAdapter(null);
                 loadSpinner();
                 break;
 
             case R.id.addNote:
-                Spinner mati = (Spinner) findViewById(R.id.matiereSpin);
                 EditText note = (EditText) findViewById(R.id.noteText);
-                maBdd.insert_note(note.getText().toString(),"1",maBdd.getMatiereId(mati.getSelectedItem().toString()));
+                maBdd.insert_note(note.getText().toString(),Semestre,maBdd.getMatiereId(mySpinner1.getSelectedItem().toString()));
                 note.setText("");
+                loadSpinner3();
                 break;
 
             case R.id.delNote:
-                Spinner mySpinner1 = (Spinner) findViewById(R.id.matiereSpin);
-                Spinner mySpinner2 = (Spinner) findViewById(R.id.noteSpin);
-                maBdd.deleteNote(mySpinner1.getSelectedItem().toString(),mySpinner2.getSelectedItem().toString());
+                maBdd.deleteNote(mySpinner2.getSelectedItem().toString(),mySpinner1.getSelectedItem().toString());
                 mySpinner1.setAdapter(null);
                 mySpinner2.setAdapter(null);
                 loadSpinner2();
@@ -120,42 +136,53 @@ public class AddMenu extends ActionBarActivity implements View.OnClickListener{
     }
 
     private void loadSpinner(){
-        ArrayList<String> maListe = maBdd.selectMatiere();
-        if(maListe.size() > 0){
-            Spinner mySpinner = (Spinner) findViewById(R.id.spinner);
-            mySpinner.clearAnimation();
+        mySpinner = (Spinner) findViewById(R.id.spinner);
+        maListe = maBdd.selectMatiere();
+
+        if(maListe.size() > 0)
+            maListe.add("Liste vide");
+
             ArrayAdapter<String> adapter;
 
             adapter = new ArrayAdapter<String>(getApplicationContext(),
                     android.R.layout.simple_spinner_item, maListe);
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
             mySpinner.setAdapter(adapter);
-        }
+
     }
     private void loadSpinner2(){
-        ArrayList<String> maListe = maBdd.selectMatiere();
-        if(maListe.size() > 0){
-            Spinner mySpinner = (Spinner) findViewById(R.id.matiereSpin);
-            mySpinner.clearAnimation();
+        maListe = maBdd.selectMatiere();
+
+        mySpinner1 = (Spinner) findViewById(R.id.matiereSpin);
+
+        if(maListe.size() > 0)
+            maListe.add("Liste vide");
+
+
+            mySpinner2 = (Spinner) findViewById(R.id.matiereSpin);
+            mySpinner2.clearAnimation();
             ArrayAdapter<String> adapter;
 
             adapter = new ArrayAdapter<String>(getApplicationContext(),
                     android.R.layout.simple_spinner_item, maListe);
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-            mySpinner.setAdapter(adapter);
-        }
+            mySpinner2.setAdapter(adapter);
+
     }
     private void loadSpinner3(){
-        ArrayList<String> maListe = maBdd.selectNote();
-        if(maListe.size() > 0){
-            Spinner mySpinner = (Spinner) findViewById(R.id.noteSpin);
-            mySpinner.clearAnimation();
+        maListe = maBdd.selectNote();
+
+        mySpinner2 = (Spinner) findViewById(R.id.noteSpin);
+
+        if(maListe.size() == 0)
+            maListe.add("Liste vide");
+
             ArrayAdapter<String> adapter;
 
             adapter = new ArrayAdapter<String>(getApplicationContext(),
                     android.R.layout.simple_spinner_item, maListe);
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-            mySpinner.setAdapter(adapter);
-        }
+            mySpinner2.setAdapter(adapter);
+
     }
 }

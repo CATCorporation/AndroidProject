@@ -55,7 +55,8 @@ public class MyBddClass extends SQLiteOpenHelper{
             db.execSQL("CREATE TABLE " + TABLE_NAME_NOTE + " (_id INTEGER PRIMARY KEY, note REAL, semestre INTEGER, " +
                     "id_mat INTEGER NOT NULL CONSTRAINT fk_id_mat REFERENCES "+ TABLE_NAME_MATS + " (_id) );");
             db.execSQL("CREATE VIEW Moyenne as select ma.name,  ma.coef, " +
-                       "(select sum(note) from "+TABLE_NAME_NOTE+" as no where no.id_mat=ma._id)" +
+                       "(select sum(note)/count(note) from "+TABLE_NAME_NOTE+" as no where no.id_mat=ma._id and no.semestre=1) as Moyenne1," +
+                       "(select sum(note)/count(note) from "+TABLE_NAME_NOTE+" as no where no.id_mat=ma._id and no.semestre=2) as Moyenne2 " +
                         "from "+TABLE_NAME_MATS+" as ma;");
     }
 
@@ -100,6 +101,7 @@ public class MyBddClass extends SQLiteOpenHelper{
         }
         return liste;
     }
+
     public ArrayList<String> selectNote (){
         ArrayList<String> liste = new ArrayList<>();
         try {
@@ -115,11 +117,26 @@ public class MyBddClass extends SQLiteOpenHelper{
         return liste;
     }
 
+    public ArrayList<String> selectMoyenne (String semestre){
+        ArrayList<String> liste = new ArrayList<>();
+        try {
+            Cursor c = db.rawQuery("SELECT name,coef,Moyenne"+semestre+" FROM Moyenne", null);
+            if (c.moveToFirst()) {
+                do {
+                    liste.add(c.getString(0)+"/"+c.getString(1)+"/"+c.getString(2));
+                } while (c.moveToNext());
+            }
+            c.close();
+        } catch (SQLiteException e) {
+        }
+        return liste;
+    }
+
     public String getMatiereId(String matiere){
 
         String _id ="";
         try {
-            Cursor c = db.rawQuery("SELECT rowid FROM "+TABLE_NAME_MATS+ " where name ='"+matiere+"'", null);
+            Cursor c = db.rawQuery("SELECT _id FROM "+TABLE_NAME_MATS+ " where name ='"+matiere+"'", null);
             if(c.moveToFirst()){
                     _id = String.valueOf(c.getLong (0));
             }

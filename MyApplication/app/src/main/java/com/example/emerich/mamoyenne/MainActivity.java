@@ -66,35 +66,13 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
 
             // bouton ajouter/supprimer cliqué
             case R.id.add:
-                /*changement de layout
-                setContentView(R.layout.add_layout);
-
-                // mise en place listener sur les boutons
-                Button four = (Button) findViewById(R.id.addM);
-                four.setOnClickListener(this);
-                Button five = (Button) findViewById(R.id.addN);
-                five.setOnClickListener(this);
-                Button six = (Button) findViewById(R.id.main);
-                six.setOnClickListener(this);*
-                */
-                Intent addMatiereIntent =
+               Intent addMatiereIntent =
                         new Intent(this, AddMenu.class);
-                startActivity(addMatiereIntent);
-                break;
+               startActivity(addMatiereIntent);
+               break;
 
             // bouton menu principal cliqué
-            case R.id.main:
-                //changement de layout
-                setContentView(R.layout.activity_main);
 
-                // mise en place listener sur les boutons
-                Button one = (Button) findViewById(R.id.add);
-                one.setOnClickListener(this); // calling onClick() method
-                Button two = (Button) findViewById(R.id.show);
-                two.setOnClickListener(this);
-                Button three = (Button) findViewById(R.id.about);
-                three.setOnClickListener(this);
-                break;
 
             // bouton consulter cliqué
             case R.id.show:
@@ -110,27 +88,6 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
                 startActivity(aboutIntent);
                 break;
 
-            // bouton matiere cliqué
-            case R.id.addM:
-                Intent addMoatiereIntent =
-                        new Intent(this, AddMenu.class);
-                // passage de paramètres pour identifier charger le bon layout
-                Bundle b = new Bundle();
-                b.putInt("key", 0);
-                addMoatiereIntent.putExtras(b);
-                startActivity(addMoatiereIntent);
-                break;
-
-            // bouton note cliqué
-            case R.id.addN:
-                Intent addNoteIntent =
-                        new Intent(this, AddMenu.class);
-                // passage de paramètres pour identifier charger le bon layout
-                Bundle b2 = new Bundle();
-                b2.putInt("key", 1);
-                addNoteIntent.putExtras(b2);
-                startActivity(addNoteIntent);
-                break;
 
             default:
                 break;
