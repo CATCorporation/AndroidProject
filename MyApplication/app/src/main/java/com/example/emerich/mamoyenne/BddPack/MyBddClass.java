@@ -161,6 +161,35 @@ public class MyBddClass extends SQLiteOpenHelper{
         }
         return _id;
     }
+
+    public void updateNote(String Note, String oldNote,String matiere){
+
+        String _id = getMatiereId(matiere);
+
+        try {
+            Cursor c = db.rawQuery("UPDATE "+TABLE_NAME_NOTE+ " SET note='"+oldNote+"' where id_mat ='"+_id+"' and note='"+Note+"'", null);
+            if(c.moveToFirst()){
+                _id = String.valueOf(c.getLong (0));
+            }
+            c.close();
+        } catch (SQLiteException e) {
+        }
+    }
+
+    public void updateMatiere(String oldMatiere,String matiere){
+
+        String _id = getMatiereId(matiere);
+
+        try {
+            Cursor c = db.rawQuery("UPDATE "+TABLE_NAME_MATS+ " SET name='"+oldMatiere+"' where _id ='"+_id+"'", null);
+            if(c.moveToFirst()){
+                _id = String.valueOf(c.getLong (0));
+            }
+            c.close();
+        } catch (SQLiteException e) {
+        }
+    }
+
     public boolean  deleteMatiere(String matiere){
 
         String _id = getMatiereId(matiere);

@@ -135,24 +135,51 @@
                         android:id="@+id/spinner"
                         android:longClickable="true"
                         android:layout_marginTop="20dp"
-                        android:layout_weight="0.4"
+                        android:layout_weight="1"
                         android:backgroundTint="#d4595552"
                         android:background="#d4595552"
                         android:clickable="false"
                         android:popupBackground="#d4595552" />
 
-                    <Button
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Supprimer"
-                        android:id="@+id/delete"
-                        android:layout_alignParentBottom="true"
-                        android:layout_centerHorizontal="true"
-                        android:layout_marginTop="20dp"
-                        style="@style/btnStyleSandrift"
-                        android:layout_weight="0.6"
-                        android:layout_marginLeft="20dp" />
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <Button
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Supprimer"
+                            android:id="@+id/delete"
+                            android:layout_alignParentBottom="true"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="20dp"
+                            style="@style/btnStyleSandrift"
+                            android:layout_weight="1"
+                            android:layout_marginLeft="20dp" />
+
+                        <Button
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Update"
+                            android:id="@+id/upMatiere"
+                            android:layout_marginTop="20dp"
+                            style="@style/btnStyleSandrift"
+                            android:layout_weight="1"
+                            android:layout_marginLeft="20dp" />
+                    </LinearLayout>
                 </LinearLayout>
+            <EditText
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                android:id="@+id/newMatiere"
+                android:layout_weight="0.20"
+                android:textColor="#ffffffff"
+                android:textAppearance="@style/TextAppearance.AppCompat.Widget.PopupMenu.Large"
+                android:background="#d4595552"
+                android:backgroundTint="#d4595552"
+                android:layout_marginTop="-30dp" />
 
             <View
                 android:layout_width="match_parent"
@@ -264,17 +291,35 @@
                     android:popupBackground="#d4595552" />
 
                 <Button
-                    android:layout_width="150dp"
-                    android:layout_height="wrap_content"
-                    android:text="Supprimer"
-                    android:id="@+id/delNote"
-                    android:layout_below="@+id/noteSpin"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginTop="20dp"
-                    android:layout_gravity="center"
-                    android:layout_weight="1"
-                    style="@style/btnStyleSandrift" />
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="Supprimer"
+                        android:id="@+id/delNote"
+                        android:layout_below="@+id/noteSpin"
+                        style="@style/btnStyleSandrift"
+                        android:layout_gravity="right"
+                        android:layout_marginTop="20dp" />
 
+                <EditText
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:inputType="number"
+                    android:id="@+id/newNote"
+                    android:layout_weight="0.20"
+                    android:textColor="#ffffffff"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Widget.PopupMenu.Large"
+                    android:background="#d4595552"
+                    android:backgroundTint="#d4595552" />
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Update"
+                    android:id="@+id/upNote"
+                    style="@style/btnStyleSandrift"
+                    android:layout_gravity="left"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="20dp" />
 
         </LinearLayout>
     </ScrollView>

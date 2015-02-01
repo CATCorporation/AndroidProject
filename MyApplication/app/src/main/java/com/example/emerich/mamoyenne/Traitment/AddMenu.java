@@ -50,6 +50,10 @@ public class AddMenu extends ActionBarActivity implements View.OnClickListener{
         three.setOnClickListener(this); // calling onClick() method
         Button four = (Button) findViewById(R.id.delNote);
         four.setOnClickListener(this);
+        Button five = (Button) findViewById(R.id.upMatiere);
+        five.setOnClickListener(this);
+        Button six = (Button) findViewById(R.id.upNote);
+        six.setOnClickListener(this);
 
         loadSpinner2();
 
@@ -147,6 +151,22 @@ public class AddMenu extends ActionBarActivity implements View.OnClickListener{
             case R.id.delNote:
                 deleteNote();
                 break;
+
+            case R.id.upMatiere:
+                note = (EditText) findViewById(R.id.newMatiere);
+                maBdd.updateMatiere(note.getText().toString(),mySpinner.getSelectedItem().toString());
+                note.setText("");
+                loadSpinner();
+                loadSpinner2();
+                loadSpinner3();
+                break;
+
+            case R.id.upNote:
+                note = (EditText) findViewById(R.id.newNote);
+                maBdd.updateNote(mySpinner2.getSelectedItem().toString(),note.getText().toString(),mySpinner1.getSelectedItem().toString());
+                note.setText("");
+                loadSpinner3();
+                break;
         }
     }
 
@@ -182,7 +202,6 @@ public class AddMenu extends ActionBarActivity implements View.OnClickListener{
                     android.R.layout.simple_spinner_item, maListe);
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
             mySpinner2.setAdapter(adapter);
-
     }
     private void loadSpinner3(){
         maListe = maBdd.selectNote(mySpinner1.getSelectedItem().toString());
@@ -198,7 +217,6 @@ public class AddMenu extends ActionBarActivity implements View.OnClickListener{
                     android.R.layout.simple_spinner_item, maListe);
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
             mySpinner2.setAdapter(adapter);
-
     }
 
     private void deleteNote() {
