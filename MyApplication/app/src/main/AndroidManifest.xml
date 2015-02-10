@@ -28,6 +28,14 @@
             android:name=".Traitment.Show"
             android:label="@string/title_activity_show" >
         </activity>
+        <activity
+            android:name=".Traitment.addMatiere"
+            android:label="@string/title_activity_add_matiere" >
+        </activity>
+        <activity
+            android:name=".Traitment.addNote"
+            android:label="@string/title_activity_add_note" >
+        </activity>
     </application>
 
 </manifest>

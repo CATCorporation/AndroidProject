@@ -104,11 +104,11 @@ public class MyBddClass extends SQLiteOpenHelper{
         return liste;
     }
 
-    public ArrayList<String> selectNote (String matiere){
+    public ArrayList<String> selectNote (String matiere,String semestre){
         String _id = getMatiereId(matiere);
         ArrayList<String> liste = new ArrayList<>();
         try {
-            Cursor c = db.rawQuery("SELECT note FROM " + TABLE_NAME_NOTE +" where id_mat="+_id, null);
+            Cursor c = db.rawQuery("SELECT note FROM " + TABLE_NAME_NOTE +" where id_mat="+_id+" and semestre="+semestre, null);
             if (c.moveToFirst()) {
                 do {
                     liste.add(c.getString(0));

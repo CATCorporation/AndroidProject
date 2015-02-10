@@ -26,7 +26,7 @@
                 <RadioButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Semestre 1"
+                    android:text="@string/semestre1"
                     android:id="@+id/sm1"
                     android:checked="true"
                     android:textColor="#ffbfad97" />
@@ -34,7 +34,7 @@
                 <RadioButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Semestre 2"
+                    android:text="@string/semestre2"
                     android:id="@+id/sm2"
                     android:checked="false"
                     android:textColor="#ffbfad97" />

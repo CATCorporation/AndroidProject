@@ -11,7 +11,8 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:fillViewport="true">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -22,304 +23,39 @@
             android:paddingBottom="16dp"
             android:orientation="vertical">
 
-            <View
+            <Button
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginBottom="10dp"
-                android:background="#ff3397ff"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="Section - Matières"
-                android:id="@+id/section1"
-                android:textColor="#ff3397ff"
-                android:layout_gravity="center" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="20dp"
-                android:background="#ff3397ff"/>
-
-            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal"
-                android:weightSum="1">
-                <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:textAppearance="?android:attr/textAppearanceLarge"
-                                android:text="Matière"
-                                android:id="@+id/textView2"
-                                android:layout_alignParentTop="true"
-                                android:layout_alignParentLeft="true"
-                                android:layout_alignParentStart="true"
-                                android:layout_weight="0.32"
-                                android:textColor="#ffbfad97" />
-
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:textAppearance="?android:attr/textAppearanceLarge"
-                                android:text="Coef"
-                                android:id="@+id/textView3"
-                                android:layout_alignTop="@+id/textView2"
-                                android:layout_toRightOf="@+id/delete"
-                                android:layout_alignParentLeft="false"
-                                android:layout_alignParentRight="true"
-                                android:layout_weight="0.5"
-                                android:layout_marginLeft="40dp"
-                                android:textColor="#FFBFAD97" />
-                </LinearLayout>
-
-                <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal"
-                android:weightSum="1">
-
-                    <EditText
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/matiereText"
-                        android:layout_weight="0.80"
-                        android:inputType="text"
-                        android:textColor="#ffffffff"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Widget.PopupMenu.Large"
-                        android:background="#d4595552"
-                        android:layout_marginRight="20dp"
-                        android:backgroundTint="#d4595552" />
-
-                    <EditText
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:inputType="number"
-                        android:id="@+id/coefText"
-                        android:layout_weight="0.20"
-                        android:textColor="#ffffffff"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Widget.PopupMenu.Large"
-                        android:background="#d4595552"
-                        android:backgroundTint="#d4595552" />
-                </LinearLayout>
-
-                <Button
-                android:layout_width="150dp"
                 android:layout_height="wrap_content"
-                android:text="Ajouter Matière"
-                android:id="@+id/insertBtn"
-                android:layout_gravity="center"
-                style="@style/btnStyleSandrift"
-                    android:layout_marginTop="10dp" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginBottom="10dp"
-                android:background="@android:color/darker_gray"/>
-
-
-                <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                    android:weightSum="1">
-
-                    <Spinner
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/spinner"
-                        android:longClickable="true"
-                        android:layout_marginTop="20dp"
-                        android:layout_weight="1"
-                        android:backgroundTint="#d4595552"
-                        android:background="#d4595552"
-                        android:clickable="false"
-                        android:popupBackground="#d4595552" />
-
-                    <LinearLayout
-                        android:orientation="vertical"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
-
-                        <Button
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="Supprimer"
-                            android:id="@+id/delete"
-                            android:layout_alignParentBottom="true"
-                            android:layout_centerHorizontal="true"
-                            android:layout_marginTop="20dp"
-                            style="@style/btnStyleSandrift"
-                            android:layout_weight="1"
-                            android:layout_marginLeft="20dp" />
-
-                        <Button
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="Update"
-                            android:id="@+id/upMatiere"
-                            android:layout_marginTop="20dp"
-                            style="@style/btnStyleSandrift"
-                            android:layout_weight="1"
-                            android:layout_marginLeft="20dp" />
-                    </LinearLayout>
-                </LinearLayout>
-            <EditText
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:inputType="text"
-                android:id="@+id/newMatiere"
-                android:layout_weight="0.20"
-                android:textColor="#ffffffff"
-                android:textAppearance="@style/TextAppearance.AppCompat.Widget.PopupMenu.Large"
-                android:background="#d4595552"
-                android:backgroundTint="#d4595552"
-                android:layout_marginTop="-30dp" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginTop="40dp"
-                android:layout_marginBottom="10dp"
-                android:background="#ff3397ff"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="Section - Notes"
-                android:id="@+id/section2"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:textColor="#ff3397ff"
-                android:layout_gravity="center" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
-                android:background="#ff3397ff"/>
-
-            <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:weightSum="2">
-
-                <Spinner
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/matiereSpin"
-                    android:layout_alignParentTop="true"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginTop="20dp"
-                    android:layout_weight="0.6"
-                    android:backgroundTint="#d4595552"
-                    android:background="#d4595552"
-                    android:layout_marginRight="20dp"
-                    android:popupBackground="#d4595552" />
-
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="numberDecimal"
-                    android:ems="10"
-                    android:id="@+id/noteText"
-                    android:layout_marginTop="20dp"
-                    android:layout_weight="1.4"
-                    android:textColor="#ffffffff"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Widget.PopupMenu.Large"
-                    android:background="#d4595552"
-                    android:backgroundTint="#d4595552" />
-            </LinearLayout>
-
-            <RadioGroup
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/radiogroup">
-
-                <RadioButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Semestre 1"
-                    android:id="@+id/sm1"
-                    android:checked="true"
-                    android:textColor="#ffbfad97" />
-
-                <RadioButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Semestre 2"
-                    android:id="@+id/sm2"
-                    android:checked="false"
-                    android:textColor="#ffbfad97" />
-            </RadioGroup>
+                android:text="@string/menuMatiere"
+                android:id="@+id/menuMatiere"
+                android:clickable="true"
+                android:layout_weight="1"
+                android:layout_centerHorizontal="true"
+                android:layout_marginLeft="40dp"
+                android:layout_marginRight="40dp"
+                android:layout_marginTop="150dp"
+                style="@style/btnStyleSandrift" />
 
             <Button
-                    android:layout_width="150dp"
-                    android:layout_height="wrap_content"
-                    android:text="Ajouter Note"
-                    android:id="@+id/addNote"
-                    android:layout_centerHorizontal="true"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="20dp"
-                    style="@style/btnStyleSandrift" />
-            <View
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginBottom="10dp"
-                android:background="@android:color/darker_gray"/>
+                android:layout_height="wrap_content"
+                android:text="@string/menuNote"
+                android:id="@+id/menuNote"
+                android:clickable="true"
+                android:layout_weight="1"
+                android:layout_centerHorizontal="true"
+                android:layout_marginLeft="40dp"
+                android:layout_marginRight="40dp"
+                android:layout_marginTop="40dp"
+                style="@style/btnStyleSandrift" />
 
-                <Spinner
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/noteSpin"
-                    android:layout_below="@+id/addNote"
-                    android:layout_alignLeft="@+id/noteText"
-                    android:layout_alignStart="@+id/noteText"
-                    android:layout_marginTop="20dp"
-                    android:background="#d4595552"
-                    android:backgroundTint="#d4595552"
-                    android:popupBackground="#d4595552" />
-
-                <Button
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:text="Supprimer"
-                        android:id="@+id/delNote"
-                        android:layout_below="@+id/noteSpin"
-                        style="@style/btnStyleSandrift"
-                        android:layout_gravity="right"
-                        android:layout_marginTop="20dp" />
-
-                <EditText
-                    android:layout_width="100dp"
-                    android:layout_height="wrap_content"
-                    android:inputType="number"
-                    android:id="@+id/newNote"
-                    android:layout_weight="0.20"
-                    android:textColor="#ffffffff"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Widget.PopupMenu.Large"
-                    android:background="#d4595552"
-                    android:backgroundTint="#d4595552" />
-
-                <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Update"
-                    android:id="@+id/upNote"
-                    style="@style/btnStyleSandrift"
-                    android:layout_gravity="left"
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginTop="20dp" />
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/retour"
+                android:text="@string/retour"
+                style="@style/btnStyleSandrift"
+                android:layout_marginTop="140dp" />
 
         </LinearLayout>
     </ScrollView>
