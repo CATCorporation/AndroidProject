@@ -1,18 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="49e9aa8c-7a8d-4f27-aa27-a6ae0131eb14" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MyApplication/app/src/main/java/com/example/emerich/mamoyenne/Traitment/AddMenu.java" afterPath="$PROJECT_DIR$/MyApplication/app/src/main/java/com/example/emerich/mamoyenne/Traitment/AddMenu.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/AndroidProject.iml" afterPath="$PROJECT_DIR$/.idea/AndroidProject.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MyApplication/MyApplication.iml" afterPath="$PROJECT_DIR$/MyApplication/MyApplication.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MyApplication/app/src/main/java/com/example/emerich/mamoyenne/BddPack/MyBddClass.java" afterPath="$PROJECT_DIR$/MyApplication/app/src/main/java/com/example/emerich/mamoyenne/BddPack/MyBddClass.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MyApplication/app/src/main/res/layout/activity_about.xml" afterPath="$PROJECT_DIR$/MyApplication/app/src/main/res/layout/activity_about.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MyApplication/app/app.iml" afterPath="$PROJECT_DIR$/MyApplication/app/app.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MyApplication/app/.idea/misc.xml" afterPath="$PROJECT_DIR$/MyApplication/app/.idea/misc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MyApplication/app/.idea/workspace.xml" afterPath="$PROJECT_DIR$/MyApplication/app/.idea/workspace.xml" />
-    </list>
+    <list default="true" id="49e9aa8c-7a8d-4f27-aa27-a6ae0131eb14" name="Default" comment="" />
     <ignored path="AndroidProject.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -75,6 +64,11 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="Scope" />
+      <pane id="AndroidView">
+        <subPane />
+      </pane>
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -321,11 +315,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
-      <pane id="AndroidView">
-        <subPane />
-      </pane>
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -339,7 +328,7 @@
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="options.splitter.details.proportions" value="0.2" />
     <property name="options.searchVisible" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/MyApplication/app" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../MyApplication" />
     <property name="recentsLimit" value="5" />
     <property name="FullScreen" value="false" />
   </component>
